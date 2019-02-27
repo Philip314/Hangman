@@ -8,6 +8,7 @@ namespace Hangman
         {
             Console.WriteLine("Welcome to Hangman!");
             Hangman hangman = new Hangman();
+            HangmanValidator validator = new HangmanValidator();
             string guess;
             string continueToPlayInput;
             bool continueToPlay = false;
@@ -22,7 +23,7 @@ namespace Hangman
                     {
                         Console.WriteLine("Guess a letter");
                         guess = Console.ReadLine();
-                    } while (!hangman.CheckInput(guess));
+                    } while (!validator.CheckInput(guess));
                     // Check if the letter has been guessed
                     if (!hangman.LetterAlreadyGuessed(guess[0]))
                     {

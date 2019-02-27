@@ -33,7 +33,6 @@ namespace Hangman
         // Reduces a life if the user guessed wrong
         public bool Guess(char letter)
         {
-            bool toReturn = false;
             AddLetterToGuessed(letter);
             for (int i=0; i<word.ToGuess.Length; i++)
             {
@@ -44,7 +43,6 @@ namespace Hangman
                 }
                 
             }
-            Console.WriteLine("False");
             ReduceOneLife();
             return false;
         }
@@ -104,19 +102,7 @@ namespace Hangman
                     Guessed = false;
                 }
             }
-        }
-        
-        // Checks whether the argument is a single letter
-        public Boolean CheckInput(String input)
-        {
-            if (input.Equals("") || input.Length > 1 || input.Equals(" ") || !char.IsLetter(input[0]))
-            {
-                return false;
-            } else
-            {
-                return true;
-            }
-        }
+        }        
 
         // Checks if array is full via index and if there is no more lives
         public bool CanContinueToGuess()
