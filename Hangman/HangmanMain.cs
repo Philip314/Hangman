@@ -23,7 +23,7 @@ namespace Hangman
                     {
                         Console.WriteLine("Guess a letter");
                         guess = Console.ReadLine();
-                    } while (!validator.CheckInput(guess));
+                    } while (!validator.CheckGuess(guess));
                     // Check if the letter has been guessed
                     if (!hangman.LetterAlreadyGuessed(guess[0]))
                     {
