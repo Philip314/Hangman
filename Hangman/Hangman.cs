@@ -160,18 +160,6 @@ namespace Hangman
             return livesRemaining;
         }
 
-        // Validate the input of if user wants to continue to play
-        public bool ValidateContinueToPlayInput(char letter)
-        {
-            if (letter == 'y' || letter == 'n')
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
-        }
-
         // Process user input on whether they want to continue to play
         public bool DecideContinueToPlay(char letter)
         {

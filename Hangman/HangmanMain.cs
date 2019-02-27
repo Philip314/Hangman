@@ -23,7 +23,7 @@ namespace Hangman
                     {
                         Console.WriteLine("Guess a letter");
                         guess = Console.ReadLine();
-                    } while (!validator.CheckGuess(guess));
+                    } while (!validator.ValidateGuess(guess));
                     // Check if the letter has been guessed
                     if (!hangman.LetterAlreadyGuessed(guess[0]))
                     {
@@ -47,7 +47,7 @@ namespace Hangman
                 {
                     Console.WriteLine("Do you want to continue to play? [y/n]");
                     continueToPlayInput = Console.ReadLine();
-                } while (!hangman.ValidateContinueToPlayInput(continueToPlayInput[0]));
+                } while (!validator.ValidateContinueToPlayInput(continueToPlayInput[0]));
                 continueToPlay = hangman.DecideContinueToPlay(continueToPlayInput[0]);
                 if (continueToPlay)
                 {
