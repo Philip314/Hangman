@@ -134,7 +134,7 @@ namespace Hangman
             string[] words = null;
             try
             {
-                words = File.ReadAllLines("WordList.txt");
+                words = File.ReadAllLines("../../../WordList.txt");
                 
             } catch (Exception)
             {
