@@ -3,6 +3,9 @@ using System.IO;
 
 namespace Hangman
 {
+    /*
+     * This class accesses the file that has the list of words and stores it as an array
+     */
     class HangmanFile
     {
 

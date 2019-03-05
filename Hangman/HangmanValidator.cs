@@ -2,6 +2,9 @@
 
 namespace Hangman
 {
+    /*
+     * This class validates user input
+     */
     class HangmanValidator
     {
         // Checks whether the argument is a single letter

@@ -2,6 +2,9 @@
 
 namespace Hangman
 {
+    /*
+     * This class manages the word that the user is guessing and how it is displayed
+     */
     class HangmanWord
     {
         public string ToGuess { get; set; }

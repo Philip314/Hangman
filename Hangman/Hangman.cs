@@ -3,6 +3,11 @@ using System.Text;
 
 namespace Hangman
 {
+    /*
+     * This class manages users guessing a letter
+     * This class has a hangmanword object which stores the word and manages how it is displayed
+     * This class has a hangmanfile object which gets a word from the file
+     */
     class Hangman
     {
         private HangmanWord hangmanWord;
