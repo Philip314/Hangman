@@ -1,12 +1,12 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
 namespace Hangman
 {
     class Hangman
     {
-        private HangmanWord word;
+        private HangmanWord hangmanWord;
+        private HangmanFile hangmanFile;
         private int numberOfGuesses;
         private int currentIndexGuessed;
         private int livesRemaining;
@@ -15,8 +15,9 @@ namespace Hangman
 
         public Hangman()
         {
-            word = new HangmanWord(GetWordFromWordList());
-            numberOfGuesses = 6 + word.ToGuess.Length;
+            hangmanFile = new HangmanFile();
+            hangmanWord = new HangmanWord(hangmanFile.GetWordFromWordList());
+            numberOfGuesses = 6 + hangmanWord.ToGuess.Length;
             currentIndexGuessed = 0;
             livesRemaining = 6;
             lettersGuessed = new char[numberOfGuesses];
@@ -25,7 +26,7 @@ namespace Hangman
 
         public string GetHiddenWord()
         {
-            return word.GetHiddenWord();
+            return hangmanWord.GetHiddenWord();
         }
 
         // True if argument matches the word but not the hidden word
@@ -34,11 +35,11 @@ namespace Hangman
         public bool Guess(char letter)
         {
             AddLetterToGuessed(letter);
-            for (int i=0; i<word.ToGuess.Length; i++)
+            for (int i=0; i< hangmanWord.ToGuess.Length; i++)
             {
-                if (word.ToGuess[i] == letter && word.HiddenWord[i] != letter)
+                if (hangmanWord.ToGuess[i] == letter && hangmanWord.HiddenWord[i] != letter)
                 {
-                    word.HiddenWord[i] = letter;
+                    hangmanWord.HiddenWord[i] = letter;
                     return true;
                 }
                 
@@ -95,7 +96,7 @@ namespace Hangman
         public void CheckIfLetterIsGuessed()
         {
             Guessed = true;
-            foreach (char c in word.HiddenWord.ToString())
+            foreach (char c in hangmanWord.HiddenWord.ToString())
             {
                 if (c.Equals('_'))
                 {
@@ -128,28 +129,6 @@ namespace Hangman
             return false;
         }
 
-        // Access the word list and get a random word
-        private string GetWordFromWordList()
-        {
-            string[] words = null;
-            try
-            {
-                words = File.ReadAllLines("../../../WordList.txt");
-                
-            } catch (Exception)
-            {
-                Console.WriteLine("File not found");
-            }
-            return words[GenerateRandomNumber(words.Length)];
-        }
-
-        // Generate random number
-        private int GenerateRandomNumber(int upper)
-        {
-            Random random = new Random();
-            return random.Next(0, upper);
-        }
-
         public void ReduceOneLife()
         {
             livesRemaining--;
@@ -175,8 +154,8 @@ namespace Hangman
         // Reset the game
         public void ResetGame()
         {
-            word.AssignWord(GetWordFromWordList());
-            numberOfGuesses = 6;
+            hangmanWord.AssignWord(hangmanFile.GetWordFromWordList());
+            numberOfGuesses = 6 + hangmanWord.ToGuess.Length;
             currentIndexGuessed = 0;
             livesRemaining = 6;
             lettersGuessed = new char[numberOfGuesses];
